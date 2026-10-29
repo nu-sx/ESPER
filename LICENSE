@@ -1,0 +1,16 @@
+エスパー ESPER (Ejecta Spectro-Photometry analyzER)
+Copyright (C) 2026 Abe Laboratory, Department of Aerospace Engineering, Nihon University
+All rights reserved.
+
+Contact: Shinsuke Abe <abe.shinsuke@nihon-u.ac.jp>
+
+本ソフトウェア（実行ファイル、同梱の実験ログ・感度曲線・較正データ、マニュアルを含む）の著作権は
+Abe Laboratory に帰属します。利用・複製・再配布・改変については、上記の連絡先にお問い合わせください。
+本ソフトウェアは「現状のまま」提供され、明示・黙示を問わずいかなる保証もありません。
+
+This software (the application, the bundled experiment log, sensitivity curves, calibration data
+and the manual) is the property of the Abe Laboratory. Contact the address above for permission to
+use, copy, redistribute or modify it. It is provided "as is", without warranty of any kind.
+
+Third-party components bundled with the application are listed, with their licenses, in
+THIRD_PARTY_NOTICES.txt.
