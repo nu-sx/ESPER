@@ -46,8 +46,8 @@ ESPER（Ejecta Spectro-Photometry analyzER）v3.1 は、JAXA/ISAS 二段式軽�
 
 | OS | ファイル | 入れ方 |
 |---|---|---|
-| macOS | `ESPER-3.1.0-mac-arm64.dmg`（Apple シリコン）<br>`ESPER-3.1.0-mac-x86_64.dmg`（Intel） | dmg を開いて ESPER.app を「アプリケーション」へ。初回は右クリック →「開く」（署名なしのため） |
-| Windows | `ESPER-3.1.0-windows-setup.exe`<br>`ESPER-3.1.0-windows.zip` | インストーラを実行（zip なら展開して `ESPER.exe`）。「PC が保護されました」が出たら「詳細情報」→「実行」 |
+| macOS | `ESPER-3.1.1-mac-arm64.dmg`（Apple シリコン）<br>`ESPER-3.1.1-mac-x86_64.dmg`（Intel） | dmg を開いて ESPER.app を「アプリケーション」へ。初回は右クリック →「開く」（署名なしのため） |
+| Windows | `ESPER-3.1.1-windows-setup.exe`<br>`ESPER-3.1.1-windows.zip` | インストーラを実行（zip なら展開して `ESPER.exe`）。「PC が保護されました」が出たら「詳細情報」→「実行」 |
 
 アプリには、実験ログ（`JAXA衝突実験Log.xlsx`）、全実験の感度曲線（`response/`）、波長較正・絶対較正と実験カタログ（`calib/`）、このマニュアルが入っています。
 実験データ（cine）は入っていません。起動後、設定タブの **［データフォルダ…］** で、年月ごとのフォルダ（`202510/` など）がある場所を選んでください（例：`/xxx/JAXA_impact`。次回以降も記憶します）。
@@ -266,6 +266,7 @@ ESPER --shot 2510shot3                                      # GUI をショッ�
 
 - 絶対直径は温度にとても敏感です（d ∝ exp(hc/2λkT)。1,450 K と 1,370 K で 1.5 倍）。温度は 1,100–3,000 K の範囲のものだけを使います。
 - 1,500 K 前後の破片の 1次光は、大部分が 650–1000 nm にあります（センサーの感度が 1000 nm で落ちるため、ピークは 820–860 nm）。温度フィットは 480–780 nm で行いますが、同じモデルで 800–1000 nm の実測もほぼ再現できることを確かめています。波長の割り当ての誤差は全体で約 −2 nm（実験ごとに −7〜+3 nm）で、温度への影響は数 % 以内です。
+- 感度曲線は約 385–996 nm の範囲で、読み込むときに約 10 nm ごとの点でなめらかにします。v3.1.0 まではなめらかにする点が粗く（約 25 nm ごと）、温度が約 1%（15 K 前後）高めに出ていました。v3.1.1 の結果は、温度が約 1% 低く、1次光から求めた絶対直径が約 6% 大きくなります。
 - 暗い光源や、1次光の帯に他の光源が重なるフレームでは、温度が 2,500–5,000 K に偏ります。温度は選別を通ったフレームだけで判断してください。
 - 自転周期は「1 回転で 2 回明るくなる」仮定です。形によっては変動周期そのものが自転周期のこともあります。
 - 0次光の d0 と 1次光の d1 は同じ温度を使うので、相関の一部は温度を共有していることによります。光量の関係（C0）は温度を使いません。
@@ -273,7 +274,7 @@ ESPER --shot 2510shot3                                      # GUI をショッ�
 
 ## ライセンス・連絡先
 
-エスパー ESPER (Ejecta Spectro-Photometry analyzER) v3.1.0
+エスパー ESPER (Ejecta Spectro-Photometry analyzER) v3.1.1
 Copyright © 2026 Abe Laboratory, Department of Aerospace Engineering, Nihon University. All rights reserved.
 連絡先：Shinsuke Abe &lt;abe.shinsuke@nihon-u.ac.jp&gt;
 
