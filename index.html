@@ -106,6 +106,7 @@ html { scroll-behavior: smooth; }
 </nav>
 
 <main>
+<p style="margin:0 0 18px"><img src="img/logo.png" alt="ESPER エスパー — Ejecta Spectro-Photometry analyzER" style="width:100%;max-width:820px;border:0;border-radius:6px"></p>
 <h1>エスパー ESPER 操作マニュアル</h1>
 <p class="sub">ESPER（Ejecta Spectro-Photometry analyzER）v3.1 ・ JAXA/ISAS 二段式軽ガス銃の衝突実験で撮影した Phantom v2512 の分光動画（0次光＋1次分光像、48,000 fps）から、イジェクタの並進速度・自転周期・灰色体温度・サイズを求めるソフトの使い方。例は 2407 shot2（A5083 板、SUS304 φ2 mm、約 7 km/s）。</p>
 
@@ -202,7 +203,7 @@ html { scroll-behavior: smooth; }
 <figure><img src="img/17_snap_spectrum.png" alt="粒子ごとのスペクトルのスナップショット" loading="lazy"><figcaption><code>spec_&lt;番号&gt;.png</code>：使ったフレームの 0次光（赤）、1次光 400–1000 nm（青破線）とフィット範囲 480–780 nm（黄）、スペクトル（黒＝取り出した 400–800 nm、灰＝1000 nm まで）と灰色体フィット（赤実線、感度を掛けて生のカウントに戻したもの）。赤破線は同じモデルをフィット範囲の外へ延ばしたもので、800–1000 nm の実測と合えば、波長較正とモデルが近赤外でも合っていることがわかる。</figcaption></figure>
 
 <h2 id="auto"><span class="no">13</span>全自動解析と解析動画</h2>
-<p><span class="btn">全自動解析…</span> は、衝突フレームの検出、検出と追跡、一括解析、0次光の直径の較正、スナップショット、ファイルの書き出しまでを一度に行います（<code>esper.py --headless</code> と同じ処理）。選んだショットがトリアージの<b>ランク A</b> のときは、解析動画 <code>&lt;名前&gt;_analysis.mp4</code> も保存します。</p>
+<p><span class="btn">全自動解析…</span> は、衝突フレームの検出、検出と追跡、一括解析、0次光の直径の較正、スナップショット、ファイルの書き出しまでを一度に行います（コマンドラインで <code>--headless</code> を付けて実行したときと同じ処理）。選んだショットがトリアージの<b>ランク A</b> のときは、解析動画 <code>&lt;名前&gt;_analysis.mp4</code> も保存します。</p>
 <figure><img src="img/15_auto.png" alt="全自動解析の後の画面" loading="lazy"></figure>
 <figure><img src="img/18_analysis_video.png" alt="解析動画の 1 フレーム" loading="lazy"><figcaption>解析動画（2510 shot5）：粒子の位置・軌跡・番号（赤＝温度あり、緑＝自転を採用、水色＝その他）。温度を求めた粒子には 1次光全体（400–1000 nm、青の細枠）を描き、温度フィットに使ったフレームでは、フィット範囲（480–780 nm、黄色の太枠）と、そのフレームの温度を描く。1,500 K 前後の粒子の光は 650–1000 nm（ピーク 820–860 nm）に集まるので、明るい筋は黄色の枠より下に見える。</figcaption></figure>
 
