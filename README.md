@@ -4,8 +4,10 @@
 
 # エスパー ESPER 操作マニュアル
 
-ESPER（Ejecta Spectro-Photometry analyzER）v3.1 は、JAXA/ISAS 二段式軽ガス銃の衝突実験で撮影した Phantom v2512 の分光動画（0次光＋1次分光像、48,000 fps）から、イジェクタ（破片）の**並進速度・自転周期・灰色体温度・サイズ**を求めるソフトウェアです。
+ESPER（Ejecta Spectro-Photometry analyzER）v3.2.0 は、JAXA/ISAS 二段式軽ガス銃の衝突実験で撮影した Phantom v2512 の分光動画（0次光＋1次分光像、48,000 fps）から、イジェクタ（破片）の**並進速度・自転周期・灰色体温度・サイズ**を求めるソフトウェアです。
 このページはその操作マニュアルです。例は 2407 shot2（A5083 板、SUS304 φ2 mm、約 7 km/s）。
+
+**PDF 版（A4、21 ページ）：[MANUAL.pdf](MANUAL.pdf)**　・　[画像つき HTML 版](index.html)
 
 > このリポジトリにはマニュアルだけを置いています。ソフトウェア本体（macOS の dmg、Windows のインストーラ）とソースコードは公開していません。
 
@@ -278,5 +280,9 @@ ESPER --shot 2510shot3                                      # GUI をショッ�
 エスパー ESPER (Ejecta Spectro-Photometry analyzER) v3.2.0
 Copyright © 2026 Abe Laboratory, Department of Aerospace Engineering, Nihon University. All rights reserved.
 連絡先：Shinsuke Abe &lt;abe.shinsuke@nihon-u.ac.jp&gt;
+
+ロゴ：[`logo/esper_logo.png`](logo/esper_logo.png)（正方形、1024×1024）・[`logo/esper_logo_wide.png`](logo/esper_logo_wide.png)（横長、1600×400）
+
+<p><img src="logo/esper_logo.png" alt="ESPER のロゴ（正方形）" width="120"></p>
 
 本ソフトウェア（同梱の実験ログ・感度曲線・較正データ、本マニュアルを含む）の利用・複製・再配布・改変については、連絡先にお問い合わせください（[LICENSE](LICENSE)）。

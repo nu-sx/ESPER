@@ -71,13 +71,38 @@ td code { white-space: nowrap; }
   nav.toc ol { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
   h1 { font-size: 27px; }
 }
+.print-only { display: none; }
+.pdf-link { margin: -18px 0 28px; font-size: 14px; }
+@page { size: A4; margin: 16mm 15mm 18mm; }
+@media print {
+  /* PDF (docs/manual/tools/make_pdf.sh): light palette, no contents rail, no video player */
+  :root, :root[data-theme="dark"], :root:not([data-theme="light"]) {
+    --paper: #ffffff; --surface: #ffffff; --ink: #18212b; --muted: #5a6876; --rule: #d9e0e7;
+    --accent: #b8620f; --cool: #1f6fb2; --code-bg: #eef2f6; color-scheme: light;
+  }
+  body { font-size: 10.5pt; line-height: 1.7; padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .wrap { display: block; max-width: none; padding: 0; }
+  nav.toc, video, .pdf-link { display: none; }
+  .print-only { display: block; }
+  main { max-width: none; }
+  p, li { max-width: none; }
+  h1 { font-size: 24pt; }
+  h2 { font-size: 15pt; margin-top: 28px; break-after: avoid; }
+  h3 { break-after: avoid; }
+  figure, pre, tr, .note { break-inside: avoid; }
+  figure img { max-height: 125mm; width: auto; margin: 0 auto; }
+  table { min-width: 0; font-size: 9.5pt; }
+  .tbl { overflow: visible; }
+  pre { white-space: pre-wrap; overflow: visible; }
+  a { color: inherit; text-decoration: none; }
+}
 @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
 html { scroll-behavior: smooth; }
 </style>
-
 <style>body{margin:0;font-size:14px}img{max-width:100%}</style>
 </head>
 <body>
+
 <div class="wrap">
 <nav class="toc" aria-label="目次">
   <div class="label">Contents</div>
@@ -108,11 +133,14 @@ html { scroll-behavior: smooth; }
 <main>
 <p style="margin:0 0 18px"><img src="img/logo.png" alt="ESPER エスパー — Ejecta Spectro-Photometry analyzER" style="width:100%;max-width:820px;border:0;border-radius:6px"></p>
 <h1>エスパー ESPER 操作マニュアル</h1>
-<p class="sub">ESPER（Ejecta Spectro-Photometry analyzER）v3.1 ・ JAXA/ISAS 二段式軽ガス銃の衝突実験で撮影した Phantom v2512 の分光動画（0次光＋1次分光像、48,000 fps）から、イジェクタの並進速度・自転周期・灰色体温度・サイズを求めるソフトの使い方。例は 2407 shot2（A5083 板、SUS304 φ2 mm、約 7 km/s）。</p>
+<p class="sub">ESPER（Ejecta Spectro-Photometry analyzER）v3.2.0 ・ JAXA/ISAS 二段式軽ガス銃の衝突実験で撮影した Phantom v2512 の分光動画（0次光＋1次分光像、48,000 fps）から、イジェクタの並進速度・自転周期・灰色体温度・サイズを求めるソフトの使い方。例は 2407 shot2（A5083 板、SUS304 φ2 mm、約 7 km/s）。</p>
+
+<p class="pdf-link">印刷・配布用：<a href="MANUAL.pdf">PDF 版（A4、21 ページ）</a></p>
 
 <h2 id="video"><span class="no">VIDEO</span>動画マニュアル</h2>
 <p>インストールから画面の操作までを、音声と字幕つきで順に説明しています（6 分 12 秒）。下の各節は、動画と同じ順番です。</p>
 <video controls preload="metadata" poster="video/poster.png" src="video/esper_manual_720p.mp4"></video>
+<figure class="print-only"><img src="video/poster.png" alt="動画マニュアルの最初の画面"><figcaption>動画マニュアル：アプリに同梱の <code>docs/manual/video/esper_manual_720p.mp4</code>、または https://github.com/nu-sx/ESPER で見られます。</figcaption></figure>
 <p class="sub"><a href="video/esper_manual.mp4">1080p 版</a>・<a href="video/esper_manual.srt">字幕（srt）</a></p>
 
 <h2 id="setup"><span class="no">START</span>インストールと起動</h2>
@@ -277,6 +305,5 @@ All rights reserved. 本ソフトウェア（同梱の実験ログ・感度曲�
 </footer>
 </main>
 </div>
-
 </body>
 </html>
