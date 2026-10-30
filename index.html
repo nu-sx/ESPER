@@ -119,8 +119,8 @@ html { scroll-behavior: smooth; }
 <h3>アプリ（macOS・Windows）</h3>
 <div class="tbl"><table>
 <tr><th>OS</th><th>ファイル</th><th>入れ方</th></tr>
-<tr><td>macOS</td><td><code>ESPER-3.1.1-mac-arm64.dmg</code>（Apple シリコン）<br><code>ESPER-3.1.1-mac-x86_64.dmg</code>（Intel）</td><td>dmg を開いて ESPER.app を「アプリケーション」へ。初回は右クリック →「開く」（署名なしのため）</td></tr>
-<tr><td>Windows</td><td><code>ESPER-3.1.1-windows-setup.exe</code><br><code>ESPER-3.1.1-windows.zip</code></td><td>インストーラを実行（zip なら展開して <code>ESPER.exe</code>）。「PC が保護されました」が出たら「詳細情報」→「実行」</td></tr>
+<tr><td>macOS</td><td><code>ESPER-3.2.0-mac-arm64.dmg</code>（Apple シリコン）<br><code>ESPER-3.2.0-mac-x86_64.dmg</code>（Intel）</td><td>dmg を開いて ESPER.app を「アプリケーション」へ。初回は右クリック →「開く」（署名なしのため）</td></tr>
+<tr><td>Windows</td><td><code>ESPER-3.2.0-windows-setup.exe</code><br><code>ESPER-3.2.0-windows.zip</code></td><td>インストーラを実行（zip なら展開して <code>ESPER.exe</code>）。「PC が保護されました」が出たら「詳細情報」→「実行」</td></tr>
 </table></div>
 <p>アプリには、実験ログ（<code>JAXA衝突実験Log.xlsx</code>）、全実験の感度曲線（<code>response/</code>）、波長較正・絶対較正と実験カタログ（<code>calib/</code>）、このマニュアルが入っています。実験データ（cine）は入っていません。起動後、設定タブの <span class="btn">データフォルダ…</span> で、年月ごとのフォルダ（<code>202510/</code> など）がある場所を選んでください（例：<code>/xxx/JAXA_impact</code>。次回以降も記憶します）。メニュー「ヘルプ」から、このマニュアルとバージョン情報を開けます。</p>
 <p>データフォルダは、アプリと同じ場所に <code>data</code> という名前で置くこともできます。データが別のディスクにあるときは、シンボリックリンクにします（macOS のターミナルで、アプリのある場所で実行）：</p>
@@ -148,7 +148,7 @@ html { scroll-behavior: smooth; }
 <tr><td><code>&lt;年月&gt;_機材配置</code></td><td>Phantom Mono の「窓-ターゲット中心」＋「マウント面-窓」＝カメラ距離</td></tr>
 </table></div>
 <figure><img src="img/02_select.png" alt="実験日とショットの選択欄" loading="lazy"><figcaption>実験日とショットを選ぶ。ショットの行には日付、ターゲット、F 値、トリアージのランクが出る。下の段に「参照感度曲線を使う」「計測ログを読込…」「データフォルダ…」。</figcaption></figure>
-<figure><img src="img/03_applied.png" alt="設定を適用した後の画面" loading="lazy"><figcaption>適用後。選択欄の下に、データフォルダ、使う較正ファイル、計測ログの内容、注意事項が出る。ステータスバーにフレームレートと衝突フレーム。</figcaption></figure>
+<figure><img src="img/03_applied.png" alt="設定を適用した後の画面" loading="lazy"><figcaption>適用後。選択欄の下に、データフォルダ、使う較正ファイル、ターゲットの材料から決めた放射率 ε、計測ログの内容、注意事項が出る。ステータスバーにフレームレートと衝突フレーム。</figcaption></figure>
 
 <h2 id="settings"><span class="no">02</span>設定の確認と変更</h2>
 <p>値は設定タブで確認でき、変えるとすぐに表示と解析に反映されます。カタログにない動画は <span class="btn">動画を開く…</span> で開き、<span class="btn">設定を読込…</span>（JSON）と <span class="btn">波長較正JSONを読込…</span> で設定します。</p>
@@ -264,13 +264,14 @@ ESPER --shot 2510shot3                                      # GUI をショッ�
   <li>絶対直径は温度にとても敏感です（d ∝ exp(hc/2λkT)。1,450 K と 1,370 K で 1.5 倍）。温度は 1,100–3,000 K の範囲のものだけを使います。</li>
   <li>1,500 K 前後の破片の 1次光は、大部分が 650–1000 nm にあります（センサーの感度が 1000 nm で落ちるため、ピークは 820–860 nm）。温度フィットは 480–780 nm で行いますが、同じモデルで 800–1000 nm の実測もほぼ再現できることを確かめています。波長の割り当ての誤差は全体で約 −2 nm（実験ごとに −7〜+3 nm）で、温度への影響は数 % 以内です。</li>
   <li>感度曲線は約 385–996 nm の範囲で、読み込むときに約 10 nm ごとの点でなめらかにします。v3.1.0 まではなめらかにする点が粗く（約 25 nm ごと）、温度が約 1%（15 K 前後）高めに出ていました。v3.1.1 の結果は、温度が約 1% 低く、1次光から求めた絶対直径が約 6% 大きくなります。</li>
+  <li>放射率 ε はターゲットの材料で決めます（v3.2.0）：Al 合金 0.10、玄武岩 0.90。実験カタログにないショットや材料が未登録の実験では、設定タブの値（既定 0.2）を使います。直径は ε<sup>−1/2</sup> に比例するので、v3.1 までの ε = 0.2 と比べて、Al 合金の直径は 1.41 倍、玄武岩は 0.47 倍になります。温度・速度・自転は ε によりません。Al の値は液体アルミの測定（632.8 nm で 0.04）と Al の光学定数（480–830 nm で 0.08–0.13）、玄武岩の値は 0.85–1.2 µm の測定（約 0.95）と溶融時の低下から決めました。</li>
   <li>暗い光源や、1次光の帯に他の光源が重なるフレームでは、温度が 2,500–5,000 K に偏ります。温度は選別を通ったフレームだけで判断してください。</li>
   <li>自転周期は「1 回転で 2 回明るくなる」仮定です。形によっては変動周期そのものが自転周期のこともあります。</li>
   <li>0次光の d0 と 1次光の d1 は同じ温度を使うので、相関の一部は温度を共有していることによります。光量の関係（C0）は温度を使いません。</li>
   <li>解析の実行中は、再生とフレーム送りが止まります（同じファイルを読むため）。</li>
 </ul>
 <footer class="sub" style="margin-top:56px;padding-top:14px;border-top:1px solid var(--rule)">
-エスパー ESPER (Ejecta Spectro-Photometry analyzER) v3.1.1<br>
+エスパー ESPER (Ejecta Spectro-Photometry analyzER) v3.2.0<br>
 Copyright © 2026 Abe Laboratory, Department of Aerospace Engineering, Nihon University ・ 連絡先：Shinsuke Abe &lt;abe.shinsuke@nihon-u.ac.jp&gt;<br>
 All rights reserved. 本ソフトウェア（同梱の実験ログ・感度曲線・較正データ、本マニュアルを含む）の利用・複製・再配布・改変については連絡先にお問い合わせください。同梱しているほかのソフトウェアのライセンスは THIRD_PARTY_NOTICES.txt にあります。
 </footer>
